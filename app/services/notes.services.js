@@ -6,7 +6,7 @@ exports.createNote = (req, res) =>{
             message: 'note content not be empty'
         })
     }
-    const note = new Note({
+    const note = new Note({ //
         name: req.body.name,
         city: req.body.city
     })
