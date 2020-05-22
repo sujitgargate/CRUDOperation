@@ -1,10 +1,10 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const NoteSchema=mongoose.Schema({
-    name:String,
-    city:String
+const noteSchema = mongoose.Schema({
+    name: String,
+    city: String
 },{
-    timestamps:true
-})
+    timestamps: true
+});
 
-module.exports=mongoose.model('Note',NoteSchema);
+module.exports = mongoose.model('Note', noteSchema);

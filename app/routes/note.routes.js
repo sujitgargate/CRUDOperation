@@ -1,11 +1,10 @@
-var express=require('express')
+var express = require('express');
 const router = express.Router();
+var notecontroller = require('../controller/note.controller');
+const expressValidator = require('express-validator');
+router.use(expressValidator());
 
-var noteController = require('../controllers/note.controller')
-expressValidator = require('express-validator')
-router.use(expressValidator())
-
-router.post('/unique',noteController.note_check);
-router.post('/',noteController.note_create);
-router.get('/',noteController.findNotes)
-module.exports=router;
+router.post('/0',notecontroller.note_check);
+router.post('/1', notecontroller.note_create);
+router.get('/2', notecontroller.findNotes);
+module.exports = router
