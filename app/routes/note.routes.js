@@ -5,6 +5,9 @@ const expressValidator = require('express-validator');
 router.use(expressValidator());
 
 router.post('/0',notecontroller.note_check);
-router.post('/1', notecontroller.note_create);
-router.get('/2', notecontroller.findNotes);
+router.post('/', notecontroller.note_create);
+router.get('/', notecontroller.findNotes);
+router.get('/:id',notecontroller.findOne);
+router.put('/:id',notecontroller.updateNote)
+router.delete('/:id',notecontroller.delete);
 module.exports = router

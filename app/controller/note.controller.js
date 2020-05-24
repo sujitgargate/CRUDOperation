@@ -35,3 +35,41 @@ exports.note_check = function(req,res,next){
         res.send(error)
     }
 }
+
+exports.findOne = (req,res)=>{
+    req.assert('ID','ID cant be empty').notEmpty();
+    let errors = req.validationErrors();
+    if(errors){
+        res.status(400).send(errors);
+    }else{
+        noteService.findOne(req,res)
+    }
+}
+
+exports.updateNote = function(req, res, next){
+    try {
+        req.assert('name','name mast be atlest 3 character').len(3);
+        req.assert('city','city should not be empty').notEmpty();
+        req.assert('ID','ID cant be empty').notEmpty();
+        
+        var errors = req.validationErrors();
+
+        if (errors) {
+            return res.status(400).send(errors);
+        } else {
+            noteService.updateNote(req, res)
+        }
+    } catch(error) {
+        res.send(error)
+    }
+}
+
+exports.delete = (req,res)=>{
+    req.assert('ID','ID cant be empty').notEmpty();
+    let errors = req.validationErrors();
+    if(errors){
+        res.status(400).send(errors);
+    }else{
+        noteService.delete(req,res);
+    }
+}

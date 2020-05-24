@@ -5,6 +5,14 @@ const expressValidator = require('express-validator');
 router.use(expressValidator());
 
 router.post('/',userController.user_create);
-router.post('/1',userController.user_check);
+
 router.get('/',userController.findUsers);
+router.get('/:id',userController.findUsers);
+
+router.put('/',userController.update_user);
+router.put('/:id',userController.update_user)
+
+router.delete('/',userController.delete_user);
+router.delete('/:id',userController.delete_user);
+
 module.exports = router

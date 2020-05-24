@@ -6,7 +6,7 @@ exports.createNote = (req, res) =>{
             message: 'note content not be empty'
         })
     }
-    const note = new Note({ //
+    const note = new Note({ 
         name: req.body.name,
         city: req.body.city
     })
@@ -56,5 +56,63 @@ exports.createUniqueRecord = function(req, res){
               })  
             })
         }
+    })
+}
+
+exports.findOne=(req,res)=>{
+    Note.findById(req.params.id)
+    .then(data=>{
+        if(data){
+            res.send(data);
+        }else{
+            res.status(400).send({
+                message:'Note Not found'
+            })
+        }
+    })
+    .catch(err=>{
+        return res.send(err)
+    })
+}
+
+exports.updateNote = function(req,res){
+    if(!req.body.name){
+        return res.status(400).send({
+            message: 'note content not be empty'
+        })
+    }
+    Note.findByIdAndUpdate(req.params.id,{
+        name: req.body.name,
+        city: req.body.city
+    }, {new: true})
+    .then(data =>{
+        if(data){
+            res.send(data);
+        }
+        else{
+            return res.status(400).send({
+                message:'note not found'
+            })
+        }
+    }).catch(err =>{
+        res.send(err);
+    } ) 
+}
+
+exports.delete=(req,res)=>{
+    Note.findByIdAndDelete(req.params.id)
+    .then(status=>{
+        if(status){
+            res.send({
+                message :'record deleted sucessfully'
+            })
+        }else{
+            res.send({
+                message :'record Not found'
+            })
+        }
+    })
+    .catch(err=>{
+        res.send(err);
     })
 }
